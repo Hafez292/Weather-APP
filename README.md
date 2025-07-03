@@ -1,2 +1,2 @@
 # Weather-APP
-This App Predict City Weather
+This App Predict City Weather.
