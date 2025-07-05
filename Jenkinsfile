@@ -6,11 +6,12 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout') {             
             steps {
-                git 'https://github.com/mohamedmabrouk-666/Weather-APP' // link of Github
-            }
-        }
+                git branch: 'mohamed_mabrouk', url: 'https://github.com/mohamedmabrouk-666/Weather-APP.git'
+     }
+}
+
 
         stage('Build Docker Image') {
             steps {
