@@ -2,46 +2,33 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "/home/mohamed/project/weather_project/my_vevn"
-       
+        IMAGE_NAME = "weather_app_image"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/username/weather_project.git' // غيّر الرابط حسب مشروعك
+                git 'https://github.com/mohamedmabrouk-666/Weather-APP' // link of Github
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME .'
-                sh 'docker run -p 5000:5000 weather_project'
-
+                sh 'docker run -d -p 5000:5000 $IMAGE_NAME'
             }
         }
-
-
     }
 
-     post {
-
-        success
-        {
-              echo 'successful'
+    post {
+        success {
+            echo 'Build successful'
         }
-
-        faliyre
-        {
-             echo 'failed'
-
+        failure {
+            echo 'Build failed'
         }
-        always 
-        {
-            echo 'pipline is competed'
-            
+        always {
+            echo 'Pipeline is completed'
         }
     }
-
 }
-
