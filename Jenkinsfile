@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'ziadkh/weather_app:v1'
-        DOCKER_CREDENTIALS_ID = '367eb5fa-29a0-40a5-ae8e-47eb5cb6cda4'
+        DOCKER_CREDENTIALS_ID = 'dockerhub'
     }
 
     stages {
@@ -24,7 +24,7 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDENTIALS_ID}".toString()) {
+                    docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDENTIALS_ID}") {
                         docker.image("${IMAGE_NAME}").push()
                     }
                 }
